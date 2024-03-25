@@ -21,8 +21,23 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'height',
+        'weight',
+        'goal_weight',
+        'dietary_preferences',
     ];
-
+    public function foodIntakes()
+    {
+        return $this->hasMany(FoodIntake::class);
+    }
+    public function waterIntakes()
+    {
+        return $this->hasMany(WaterIntake::class);
+    }
+    public function personalizedTrainings()
+    {
+        return $this->hasMany(PersonalizedTraining::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
