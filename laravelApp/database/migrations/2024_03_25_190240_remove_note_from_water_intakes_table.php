@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('water_intakes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->integer('amount');
-            $table->date('date');
-            $table->time('time');
-            $table->text('note')->nullable(); // Dodata kolona
-            $table->timestamps();
+        Schema::table('water_intakes', function (Blueprint $table) {
+            $table->dropColumn('note');
         });
     }
 
@@ -31,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('water_intakes');
+        Schema::table('water_intakes', function (Blueprint $table) {
+            $table->text('note')->nullable()->after('time');
+        });
     }
 };

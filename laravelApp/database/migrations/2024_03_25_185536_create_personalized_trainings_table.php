@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('personalized_trainings', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('training_type');
+            $table->integer('duration');
+            $table->string('target_muscle_group');
+            $table->text('instructions');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

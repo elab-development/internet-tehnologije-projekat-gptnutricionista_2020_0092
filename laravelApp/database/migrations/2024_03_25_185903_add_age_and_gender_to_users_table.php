@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('water_intakes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->integer('amount');
-            $table->date('date');
-            $table->time('time');
-            $table->text('note')->nullable(); // Dodata kolona
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('age')->nullable(); // Dodaje kolonu za starost
+            $table->string('gender', 10)->nullable(); // Dodaje kolonu za pol
         });
     }
 
@@ -31,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('water_intakes');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn(['age', 'gender']); 
+        });
     }
 };

@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('food_intakes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('meal_type');
+            $table->integer('calories');
+            $table->text('description');
+            $table->date('date');
+            $table->time('time');
             $table->timestamps();
         });
     }
