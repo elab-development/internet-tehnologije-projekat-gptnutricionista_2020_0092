@@ -14,8 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('age')->nullable(); // Dodaje kolonu za starost
-            $table->string('gender', 10)->nullable(); // Dodaje kolonu za pol
+            $table->integer('age')->nullable();
+            $table->string('gender', 10)->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('weight')->nullable();
+            $table->integer('goal_weight')->nullable();
+            $table->string('dietary_preferences')->nullable();
         });
     }
 
@@ -27,7 +31,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['age', 'gender']); 
+            $table->dropColumn(['age', 'gender', 'height', 'weight', 'goal_weight', 'dietary_preferences']); 
         });
     }
 };

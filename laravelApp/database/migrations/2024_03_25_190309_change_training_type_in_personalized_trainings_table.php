@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,11 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('personalized_trainings', function (Blueprint $table) {
-            $table->dropColumn('training_type');
-
-            $table->enum('training_type', ['Strength', 'Aerobics', 'Circuit', 'Balance', 'Cardio', 'Anaerobic', 'Stretching']);
-        });
+        DB::statement("ALTER TABLE personalized_trainings MODIFY COLUMN training_type ENUM('Strength', 'Aerobics', 'Circuit', 'Balance', 'Cardio', 'Anaerobic', 'Stretching')");
     }
 
     /**
@@ -27,9 +24,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('personalized_trainings', function (Blueprint $table) {
-            $table->dropColumn('training_type');
-            $table->string('training_type')->after('user_id'); // Dodaje nazad originalnu kolonu bez ograničenja
-        });
+        DB::statement("ALTER TABLE personalized_trainings MODIFY COLUMN training_type STRING");
     }
 };
