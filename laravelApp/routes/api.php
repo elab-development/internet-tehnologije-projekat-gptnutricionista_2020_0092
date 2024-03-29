@@ -19,14 +19,22 @@ use App\Http\Controllers\PlanIshraneController;
 */
 
 
-// Ruta za generisanje plana ishrane
-Route::post('/napraviPlan', [PlanIshraneController::class, 'generateDietPlan']); 
-Route::post('/register', [AuthController::class, 'register']); 
-Route::post('/login', [AuthController::class, 'login']); 
-Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) { //vraca podatke o ulogovanom korisniku
-    return $request->user();
-}); 
-Route::apiResource('foodIntakes', FoodIntakeController::class);
-Route::apiResource('personalizedTrainings', PersonalizedTrainingController::class);
-Route::apiResource('waterIntakes', WaterIntakeController::class);
+// Rute za autentifikaciju koje nisu zaštićene
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+
+// Zaštićene rute
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::post('/napraviPlan', [PlanIshraneController::class, 'generateDietPlan']); 
+
+    Route::apiResources([
+        'foodIntakes' => FoodIntakeController::class,
+        'personalizedTrainings' => PersonalizedTrainingController::class,
+        'waterIntakes' => WaterIntakeController::class,
+    ]);
+});
