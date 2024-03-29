@@ -36,8 +36,7 @@ class OpenAIService
     }
 
     protected function createPrompt($userInput)
-    {
-        // Kreiranje prompta na osnovu korisničkog unosa 
+    { 
         $prompt = "Design a nutrition plan based on the profile details below: \n";
         $prompt .= "Profile information: " . json_encode($userInput) . "\n";
         $prompt .= "The nutrition plan is required for a total of " . $userInput['period'] . " days.\n";

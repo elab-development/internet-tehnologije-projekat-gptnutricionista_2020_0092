@@ -9,10 +9,32 @@ use Illuminate\Support\Facades\Validator;
 
 class PersonalizedTrainingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return PersonalizedTrainingResource::collection(PersonalizedTraining::all());
+        // Kreiranje osnovnog upita
+        $query = PersonalizedTraining::query();
+    
+        // Filtriranje po user_id
+        if ($request->has('user_id')) {
+            $query->where('user_id', $request->input('user_id'));
+        }
+    
+        // Filtriranje po training_type
+        if ($request->has('training_type')) {
+            $query->where('training_type', $request->input('training_type'));
+        }
+    
+        // Filtriranje po target_muscle_group
+        if ($request->has('target_muscle_group')) {
+            $query->where('target_muscle_group', 'like', '%' . $request->input('target_muscle_group') . '%');
+        }
+    
+        // Dodavanje paginacije
+        $personalizedTrainings = $query->paginate(5);  
+    
+        return PersonalizedTrainingResource::collection($personalizedTrainings);
     }
+    
 
     public function store(Request $request)
     {
