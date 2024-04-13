@@ -21,6 +21,8 @@ return new class extends Migration
             $table->time('time');
             $table->text('note')->nullable(); // Dodata kolona
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

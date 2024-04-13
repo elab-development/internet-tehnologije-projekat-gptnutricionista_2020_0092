@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\OpenAIService;
-use App\Http\Resources\UserResource; // Ako vraćate podatke o korisniku
+use App\Http\Resources\UserResource; 
 
 class PlanIshraneController extends Controller
 {
