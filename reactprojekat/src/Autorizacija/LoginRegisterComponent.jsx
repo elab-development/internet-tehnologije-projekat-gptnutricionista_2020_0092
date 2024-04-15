@@ -87,7 +87,7 @@ const Button = styled.div`
   }
 `;
 
-function LoginRegisterComponent() {
+function LoginRegisterComponent({setToken}) {
   const [isLogin, setIsLogin] = useState(true);   
   const [username, setUsername] = useState('anamitic01@gmail.com');
   const [password, setPassword] = useState('password');
@@ -105,7 +105,7 @@ function LoginRegisterComponent() {
         password: password,
       });
       console.log('Login response:', response.data);
-     
+      setToken(response.data.token)
     } catch (error) {
       console.error('Login error:', error);   
     }
