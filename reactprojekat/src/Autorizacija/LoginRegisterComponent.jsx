@@ -88,7 +88,7 @@ const Button = styled.div`
 `;
 
 function LoginRegisterComponent() {
-  const [isLogin, setIsLogin] = useState(true);  // Toggle between login and register
+  const [isLogin, setIsLogin] = useState(true);   
   const [username, setUsername] = useState('anamitic01@gmail.com');
   const [password, setPassword] = useState('password');
   const [repeatPassword, setRepeatPassword] = useState('');
