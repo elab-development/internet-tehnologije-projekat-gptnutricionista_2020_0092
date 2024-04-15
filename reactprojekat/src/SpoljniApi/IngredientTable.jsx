@@ -1,38 +1,27 @@
 //dokumentacija za api:
-  //https://fdc.nal.usda.gov/api-guide.html#bkmk-6 
-  import React, { useState, useEffect } from 'react';
+//https://fdc.nal.usda.gov/api-guide.html#bkmk-6 
+
+
+import React from 'react';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 import './Ingredients.css';
 import IngredientRow from './IngredientRow';
 
+const fetchIngredients = async (searchTerm) => {
+  const response = await axios.get(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${searchTerm}&pageSize=50&api_key=HltNbgWlYukGRJua7Z8ed0Y2A2V6LuE13PpZ5d9k`);
+  return response.data.foods.filter(ingredient => ingredient.foodNutrients);
+};
+
 const IngredientTable = () => {
-  const [ingredients, setIngredients] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('energy'); // Početni kriterijum sortiranja
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [sortBy, setSortBy] = React.useState('energy');
+  const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 10;
-
-  const getNutrientValue = (ingredient, nutrientName) => {
-    const nutrient = ingredient.foodNutrients.find(nutrient => nutrient.nutrientName === nutrientName);
-    return nutrient ? nutrient.value : 0;
-  };
-
-  useEffect(() => {
-    const fetchIngredients = async () => {
-      try {
-        const response = await axios.get(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${searchTerm}&pageSize=50&api_key=HltNbgWlYukGRJua7Z8ed0Y2A2V6LuE13PpZ5d9k`);
-        const filteredIngredients = response.data.foods.filter(ingredient => ingredient.foodNutrients);
-        setIngredients(filteredIngredients);
-      } catch (error) {
-        console.error('Error fetching ingredients:', error);
-      }
-    }; 
-    fetchIngredients();
-  }, [searchTerm]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    setCurrentPage(1); // Resetovanje trenutne stranice prilikom promene pretrage
+    setCurrentPage(1);
   };
 
   const handleSortChange = (event) => {
@@ -42,8 +31,10 @@ const IngredientTable = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  const { data: ingredients = [] } = useQuery(['ingredients', searchTerm], () => fetchIngredients(searchTerm));
+
   const sortedIngredients = [...ingredients].sort((a, b) => {
-    //  logika za sortiranje po izabranom kriterijumu
     switch (sortBy) {
       case 'energy':
         return getNutrientValue(a, 'Energy') - getNutrientValue(b, 'Energy');
@@ -57,6 +48,7 @@ const IngredientTable = () => {
         return 0;
     }
   });
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = sortedIngredients.slice(indexOfFirstItem, indexOfLastItem);
@@ -98,6 +90,11 @@ const IngredientTable = () => {
       />
     </div>
   );
+};
+
+const getNutrientValue = (ingredient, nutrientName) => {
+  const nutrient = ingredient.foodNutrients.find(nutrient => nutrient.nutrientName === nutrientName);
+  return nutrient ? nutrient.value : 0;
 };
 
 const Pagination = ({ itemsPerPage, totalItems, currentPage, onPageChange }) => {

@@ -27,7 +27,11 @@ const Navbar = ({ token, setToken }) => {
       </div>
       <ul className="nav-links">
         {token ? (
-          <li onClick={handleLogout}>Logout</li>
+            <>
+              <li><Link to="/sastojci">Sastojci</Link></li>
+              <li onClick={handleLogout}>Logout</li>
+            </>
+        
         ) : (
           <li><Link to="/auth">Login/Register</Link></li>
         )}

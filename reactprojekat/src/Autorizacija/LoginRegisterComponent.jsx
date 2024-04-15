@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios'; 
+import { useNavigate } from 'react-router-dom';
  
 const MaterialContainer = styled.div`
   width: 100%; 
@@ -92,7 +93,7 @@ function LoginRegisterComponent({setToken}) {
   const [username, setUsername] = useState('anamitic01@gmail.com');
   const [password, setPassword] = useState('password');
   const [repeatPassword, setRepeatPassword] = useState('');
-
+  let navigate=useNavigate();
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
@@ -106,6 +107,7 @@ function LoginRegisterComponent({setToken}) {
       });
       console.log('Login response:', response.data);
       setToken(response.data.token)
+      navigate('/sastojci');
     } catch (error) {
       console.error('Login error:', error);   
     }
