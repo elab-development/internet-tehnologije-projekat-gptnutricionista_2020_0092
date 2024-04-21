@@ -29,6 +29,7 @@ const Navbar = ({ token, setToken }) => {
         {token ? (
             <>
               <li><Link to="/sastojci">Sastojci</Link></li>
+              <li><Link to="/mojprofil">Moj profil</Link></li>
               <li onClick={handleLogout}>Logout</li>
             </>
         

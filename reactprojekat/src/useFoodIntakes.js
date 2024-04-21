@@ -21,7 +21,9 @@ const useFoodIntakes = (path) => {
         const response = await axios.get(path, config);
 
         // Postavljanje podataka u stanje
-        setFoodIntakes(response.data);
+        setFoodIntakes(response.data.data);
+         
+
       } catch (error) {
         console.error('Error fetching food intakes:', error);
       }
