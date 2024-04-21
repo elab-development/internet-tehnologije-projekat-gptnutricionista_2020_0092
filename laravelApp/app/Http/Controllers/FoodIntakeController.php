@@ -5,35 +5,38 @@ namespace App\Http\Controllers;
 use App\Models\FoodIntake;
 use Illuminate\Http\Request;
 use App\Http\Resources\FoodIntakeResource;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class FoodIntakeController extends Controller
 {
     public function index(Request $request)
     {
+        // Dobijanje trenutnog ulogovanog korisnika
+        $user = Auth::user(); //prepravljeno za react domaci
+    
         // Definisanje filtera
         $query = FoodIntake::query();
-    
-        // Filtriranje po user_id
-        if ($request->has('user_id')) {
-            $query->where('user_id', $request->input('user_id'));
-        }
-    
+        
+        // Filtriranje po user_id (umesto iz requesta, koristimo ID ulogovanog korisnika)
+        $query->where('user_id', $user->id);
+        
         // Filtriranje po meal_type
         if ($request->has('meal_type')) {
             $query->where('meal_type', 'like', '%' . $request->input('meal_type') . '%');
         }
-    
+        
         // Filtriranje po datumu
         if ($request->has('date')) {
-            $query->where('date', $request->input('date'));
+            $query->whereDate('date', $request->input('date'));
         }
-    
+        
         // Dodavanje paginacije na upit
         $foodIntakes = $query->paginate(5);  
-    
+        
         return FoodIntakeResource::collection($foodIntakes);
     }
+    
     
 
     public function store(Request $request)

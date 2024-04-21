@@ -13,7 +13,7 @@ const Navbar = ({ token, setToken }) => {
         }
       });
       setToken(null);
-      
+      sessionStorage.clear();
       history('/auth');
     } catch (error) {
       console.error('Logout error:', error);
@@ -23,7 +23,7 @@ const Navbar = ({ token, setToken }) => {
   return (
     <div className="navbar">
       <div className="logo">
-        <Link to="/">Logo</Link>
+        <Link to="/">GPT NUTRI APP</Link>
       </div>
       <ul className="nav-links">
         {token ? (

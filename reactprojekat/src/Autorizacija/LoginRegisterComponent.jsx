@@ -106,6 +106,7 @@ function LoginRegisterComponent({setToken}) {
         password: password,
       });
       console.log('Login response:', response.data);
+      sessionStorage.setItem("token", response.data.token);
       setToken(response.data.token)
       navigate('/sastojci');
     } catch (error) {
