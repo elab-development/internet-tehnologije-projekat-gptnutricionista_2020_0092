@@ -4,6 +4,7 @@ import LoginRegisterComponent from './Autorizacija/LoginRegisterComponent';
 import Navbar from './headerFooter/Navbar';
 import IngredientTable from './SpoljniApi/IngredientTable';
 import MojProfil from './korisnik/MojProfil';
+import HomePage from './Home/HomePage';
 
 function App() {
   const [token, setToken] =useState(null)
@@ -12,6 +13,8 @@ function App() {
       <div className="App">
         <Navbar token={token} setToken={setToken}></Navbar>
         <Routes>
+        <Route path="/" element={<HomePage />} />
+
           <Route path="/sastojci" element={<IngredientTable />} />
           <Route path="/mojprofil" element={<MojProfil />} />
 

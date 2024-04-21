@@ -1,0 +1,132 @@
+/* Reset and global styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    outline: none;
+  }
+  
+  /* Main container */
+  .materialContainer {
+    width: 100%;
+    max-width: 50vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 5%;
+  }
+  
+  /* Styling for boxes inside the container */
+  .box {
+    position: relative;
+    top: 0;
+    opacity: 1;
+    float: left;
+    padding: 60px 50px 40px 50px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    transform: scale(1);
+    z-index: 5;
+  }
+  
+  /* Additional styling for the back box */
+  .box.back {
+    transform: scale(0.95);
+    top: -20px;
+    opacity: 0.8;
+    z-index: -1;
+  }
+  
+  /* Pseudo-element for decorative purpose before the box */
+  .box:before {
+    content: "";
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: -10px;
+    background: rgba(255, 255, 255, 0.6);
+    left: 0;
+    transform: scale(0.95);
+    z-index: -1;
+  }
+  
+  /* Title styling */
+  .title {
+    width: 100%;
+    float: left;
+    line-height: 46px;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ed2553;
+    position: relative;
+  }
+  
+  /* Decorative element before title */
+  .title:before {
+    content: "";
+    width: 5px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -50px;
+    background: #ed2553;
+  }
+  
+  /* Overbox styling */
+  .overbox {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: inherit;
+    border-radius: 10px;
+    padding: 60px 50px 40px 50px;
+    display: none; /* Initially hidden, can be toggled with JavaScript */
+  }
+  
+  /* Styling for elements within overbox when visible */
+  .overbox .title, .overbox .button, .overbox .input {
+    z-index: 111;
+    position: relative;
+    color: #fff;
+  }
+  
+  /* Styling adjustments for inputs within overbox */
+  .overbox .input input, .overbox .input label {
+    color: #fff;
+  }
+  
+  /* Ensuring titles within overbox are positioned and colored appropriately */
+  .overbox .title {
+    color: #fff;
+    width: 80%;
+  }
+  
+  /* Additional UI elements style, potentially for interaction */
+  .material-button, .alt-2 {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: #ed2553;
+    position: absolute;
+    top: 40px;
+    right: -70px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  
+  .material-button .shape, .alt-2 .shape {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
