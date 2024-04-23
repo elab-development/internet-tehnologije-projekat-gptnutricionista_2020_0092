@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios'; 
 import { useNavigate } from 'react-router-dom';
+import Input from './Input';
  
 const MaterialContainer = styled.div`
   width: 100%; 
@@ -48,27 +49,7 @@ const Title = styled.div`
   margin-bottom: 30px;
 `;
 
-const Input = styled.div`
-  width: 100%;
-  float: left;
-  margin-top: 30px;
-
-  label, input, span {
-    width: 100%;
-    float: left;
-  }
-
-  input {
-    height: 60px;
-    top: 10px;
-    border-radius:5px;
-    background: transparent;
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    color: rgba(0, 0, 0, 0.8);
-    font-weight: 300;
-  }
-`;
+ 
 
 const Button = styled.div`
   width: 100%;
@@ -92,7 +73,7 @@ function LoginRegisterComponent({setToken}) {
   const [isLogin, setIsLogin] = useState(true);   
   const [username, setUsername] = useState('anamitic01@gmail.com');
   const [password, setPassword] = useState('password');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('password');
   let navigate=useNavigate();
   const toggleForm = () => {
     setIsLogin(!isLogin);
@@ -124,13 +105,12 @@ function LoginRegisterComponent({setToken}) {
       
       });
       console.log('Register response:', response.data);
-   
+      alert("USPEH")
     } catch (error) {
       console.error('Register error:', error);
-     
+      alert("GRESKA")
     }
   };
-
 
   return (
     <MaterialContainer>
@@ -138,14 +118,8 @@ function LoginRegisterComponent({setToken}) {
         <Box>
           <Title>LOGIN</Title>
           <form onSubmit={handleLogin}>
-            <Input>
-              <label htmlFor="name">Username</label>
-              <input type="text" name="name" id="name" value={username} onChange={(e) => setUsername(e.target.value)} />
-            </Input>
-            <Input>
-              <label htmlFor="pass">Password</label>
-              <input type="password" name="pass" id="pass" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </Input>
+            <Input label="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <Input label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <Button>
               <button type="submit">GO</button>
             </Button>
@@ -159,18 +133,9 @@ function LoginRegisterComponent({setToken}) {
         <Box>
           <Title>REGISTER</Title>
           <form onSubmit={handleRegister}>
-            <Input>
-              <label htmlFor="regname">Username</label>
-              <input type="text" name="regname" id="regname" value={username} onChange={(e) => setUsername(e.target.value)} />
-            </Input>
-            <Input>
-              <label htmlFor="regpass">Password</label>
-              <input type="password" name="regpass" id="regpass" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </Input>
-            <Input>
-              <label htmlFor="reregpass">Repeat Password</label>
-              <input type="password" name="reregpass" id="reregpass" value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)} />
-            </Input>
+            <Input label="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <Input label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <Input label="Repeat Password" type="password" value={repeatPassword} onChange={(e) => setRepeatPassword(e.target.value)} />
             <Button>
               <button type="submit">NEXT</button>
             </Button>
@@ -183,5 +148,6 @@ function LoginRegisterComponent({setToken}) {
     </MaterialContainer>
   );
 }
+
 
 export default LoginRegisterComponent;

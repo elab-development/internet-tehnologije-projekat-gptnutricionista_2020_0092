@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useFoodIntakes from '../useFoodIntakes';
- 
+import './MojProfil.css'; 
 
 const MojProfil = () => {
   const [foodIntakes, setFoodIntakes] = useFoodIntakes('http://127.0.0.1:8000/api/foodIntakes');
@@ -13,8 +13,8 @@ const MojProfil = () => {
   }, [foodIntakes]);
 
   return (
-    <div>
-      <h1>Moji unosi hrane</h1>
+    <div className="ingredient-table">
+      <div className="ingredient-title">Moji unosi hrane</div>
       <table>
         <thead>
           <tr>
@@ -31,8 +31,8 @@ const MojProfil = () => {
               <td>{intake.meal_type}</td>
               <td>{intake.calories}</td>
               <td>{intake.description}</td>
-              <td>{new Date(intake.date).toLocaleDateString()}</td>
-              <td>{new Date(intake.time).toLocaleTimeString()}</td>
+              <td>{new Date(intake.date).toLocaleDateString()}</td> 
+              <td>{intake.time}</td>
             </tr>
           ))}
         </tbody>

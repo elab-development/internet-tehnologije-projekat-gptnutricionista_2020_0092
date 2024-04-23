@@ -7,7 +7,7 @@ import MojProfil from './korisnik/MojProfil';
 import HomePage from './Home/HomePage';
 
 function App() {
-  const [token, setToken] =useState(null)
+  const [token, setToken] =useState(null);
   return (
     <Router>
       <div className="App">
