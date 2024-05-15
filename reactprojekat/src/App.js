@@ -7,6 +7,7 @@ import MojProfil from './korisnik/MojProfil';
 import HomePage from './Home/HomePage';
 import DodajUnosHrane from './korisnik/CRUD/DodajUnosHrane';
 import DodajUnosVode from './korisnik/CRUD/DodajUnosVode';
+import DietPlanForm from './korisnik/DietPlanForm';
 
 function App() {
   const [token, setToken] =useState(null);
@@ -21,6 +22,7 @@ function App() {
           <Route path="/mojprofil" element={<MojProfil />} /> {/* dopunjeno sa delete, update , prikaz unosa vode*/}
           <Route path="/auth" element={<LoginRegisterComponent setToken={setToken} />} />
 
+          <Route path="/gpt" element={<DietPlanForm />} />
 
           <Route path="/dodajHranu" element={<DodajUnosHrane />} />  {/*dodato za seminarski */}
           <Route path="/dodajVodu" element={<DodajUnosVode />} />  {/*dodato za seminarski */}

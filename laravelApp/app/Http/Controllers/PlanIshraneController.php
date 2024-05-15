@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\OpenAIService;
-use App\Http\Resources\UserResource; 
 
 class PlanIshraneController extends Controller
 {
@@ -17,10 +15,16 @@ class PlanIshraneController extends Controller
 
     public function generateDietPlan(Request $request)
     {
-        $validatedData = $request->validate([ 
+        $validatedData = $request->validate([
             'period' => 'required|integer',
             'preferences' => 'required|string',
             'calories' => 'required|integer',
+            'height' => 'required|numeric',
+            'current_weight' => 'required|numeric',
+            'desired_weight' => 'required|numeric',
+            'activity_level' => 'required|string',
+            'age' => 'required|integer',
+            'gender' => 'required|string',
         ]);
 
         $generatedPlan = $this->openAIService->generateDietPlan($validatedData);
