@@ -23,7 +23,7 @@ class WaterIntakeController extends Controller
         $validator = Validator::make($request->all(), [
             'amount' => 'required|integer|between:200,3000',
             'date' => 'required|date',
-            'time' => 'required|date_format:H:i:s',
+            'time' => 'required|date_format:H:i',
         ]);
 
         if ($validator->fails()) {

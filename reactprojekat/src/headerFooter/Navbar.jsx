@@ -30,7 +30,8 @@ const Navbar = ({ token, setToken }) => {
             <>
               <li><Link to="/sastojci">Sastojci</Link></li>
               <li><Link to="/mojprofil">Moj profil</Link></li>
-              <li><Link to="/dodaj">Dodaj</Link></li>
+              <li><Link to="/dodajHranu">Dodaj hranu</Link></li>
+              <li><Link to="/dodajVodu">Dodaj vodu</Link></li>
 
               <li onClick={handleLogout}>Logout</li>
             </>
