@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
           <Route path="/sastojci" element={<IngredientTable />} />
-          <Route path="/mojprofil" element={<MojProfil />} /> {/* dopunjeno sa delete */}
+          <Route path="/mojprofil" element={<MojProfil />} /> {/* dopunjeno sa delete, update */}
           <Route path="/auth" element={<LoginRegisterComponent setToken={setToken} />} />
 
 
