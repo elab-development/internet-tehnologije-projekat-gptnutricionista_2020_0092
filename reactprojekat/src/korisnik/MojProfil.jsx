@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import useFoodIntakes from '../useFoodIntakes';
 import './MojProfil.css'; 
+import UpdateModal from './CRUD/UpdateModal';
 
 const MojProfil = () => {
   const [foodIntakes, setFoodIntakes] = useFoodIntakes('http://127.0.0.1:8000/api/foodIntakes');
   const [sortedIntakes, setSortedIntakes] = useState([]);
+  const [modalIntake, setModalIntake] = useState(null);
 
   // Efekat koji sortira podatke o unosima hrane hronološki kada se promene
   useEffect(() => {
@@ -31,8 +33,29 @@ const MojProfil = () => {
     }
   };
 
+  const handleUpdate = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/foodIntakes', {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+        },
+      });
+      setFoodIntakes(response.data.data);
+    } catch (error) {
+      console.error('Greška pri učitavanju unosa hrane:', error);
+      alert('Došlo je do greške pri učitavanju unosa hrane');
+    }
+  };
+
   return (
     <div className="ingredient-table">
+      {modalIntake && (
+        <UpdateModal
+          intake={modalIntake}
+          onClose={() => setModalIntake(null)}
+          onUpdate={handleUpdate}
+        />
+      )}
       <div className="ingredient-title">Moji unosi hrane</div>
       <table>
         <thead>
@@ -55,6 +78,7 @@ const MojProfil = () => {
               <td>{intake.time}</td>
               <td>
                 <button onClick={() => handleDelete(intake.id)}>Delete</button>
+                <button onClick={() => setModalIntake(intake)}>Update</button>
               </td>
             </tr>
           ))}
