@@ -41,23 +41,28 @@ class FoodIntakeController extends Controller
 
     public function store(Request $request)
     {
+        $user = Auth::user(); // Dobijanje trenutno ulogovanog korisnika
+    
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required|exists:users,id',
             'meal_type' => 'required|string|max:255',
             'calories' => 'required|integer',
             'description' => 'required|string',
             'date' => 'required|date',
-            'time' => 'required|date_format:H:i:s',
+            'time' => 'required|date_format:H:i',
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-
-        $foodIntake = FoodIntake::create($validator->validated());
-
+    
+        $foodIntakeData = $validator->validated();
+        $foodIntakeData['user_id'] = $user->id; // Dodavanje user_id iz trenutno ulogovanog korisnika
+    
+        $foodIntake = FoodIntake::create($foodIntakeData);
+    
         return new FoodIntakeResource($foodIntake);
     }
+    
 
     public function show($id)
     {

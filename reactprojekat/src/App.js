@@ -5,6 +5,7 @@ import Navbar from './headerFooter/Navbar';
 import IngredientTable from './SpoljniApi/IngredientTable';
 import MojProfil from './korisnik/MojProfil';
 import HomePage from './Home/HomePage';
+import DodajUnosHrane from './korisnik/CRUD/DodajUnosHrane';
 
 function App() {
   const [token, setToken] =useState(null);
@@ -17,8 +18,12 @@ function App() {
 
           <Route path="/sastojci" element={<IngredientTable />} />
           <Route path="/mojprofil" element={<MojProfil />} />
-
           <Route path="/auth" element={<LoginRegisterComponent setToken={setToken} />} />
+
+
+          <Route path="/dodaj" element={<DodajUnosHrane />} />
+
+
         </Routes>
       </div>
     </Router>
