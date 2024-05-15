@@ -17,11 +17,11 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
           <Route path="/sastojci" element={<IngredientTable />} />
-          <Route path="/mojprofil" element={<MojProfil />} />
+          <Route path="/mojprofil" element={<MojProfil />} /> {/* dopunjeno sa delete */}
           <Route path="/auth" element={<LoginRegisterComponent setToken={setToken} />} />
 
 
-          <Route path="/dodaj" element={<DodajUnosHrane />} />
+          <Route path="/dodaj" element={<DodajUnosHrane />} />  {/*dodato za seminarski */}
 
 
         </Routes>
