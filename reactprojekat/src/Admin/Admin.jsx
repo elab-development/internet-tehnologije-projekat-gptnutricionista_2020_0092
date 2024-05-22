@@ -33,7 +33,7 @@ const Admin = () => {
             {
                 label: 'New Users per Month',
                 data: data.monthly_new_users.map(item => item.count),
-                fill: false,
+                fill: true,
                 borderColor: 'rgba(75,192,192,1)',
                 tension: 0.1
             }

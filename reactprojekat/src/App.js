@@ -20,13 +20,13 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
           <Route path="/sastojci" element={<IngredientTable />} />
-          <Route path="/mojprofil" element={<MojProfil />} /> {/* dopunjeno sa delete, update , prikaz unosa vode*/}
+          <Route path="/mojprofil" element={<MojProfil />} /> 
           <Route path="/auth" element={<LoginRegisterComponent setToken={setToken} />} />
 
           <Route path="/gpt" element={<DietPlanForm />} />
 
-          <Route path="/dodajHranu" element={<DodajUnosHrane />} />  {/*dodato za seminarski */}
-          <Route path="/dodajVodu" element={<DodajUnosVode />} />  {/*dodato za seminarski */}
+          <Route path="/dodajHranu" element={<DodajUnosHrane />} />  
+          <Route path="/dodajVodu" element={<DodajUnosVode />} />  
           <Route path="/admin" element={<Admin />} />
 
         </Routes>

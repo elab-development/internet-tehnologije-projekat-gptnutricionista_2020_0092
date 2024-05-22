@@ -37,7 +37,7 @@ const UpdateModal = ({ intake, onClose, onUpdate }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      onUpdate(); // Pozivanje funkcije za ponovno učitavanje podataka
+      onUpdate();
       onClose();
     } catch (error) {
       console.error('Greška pri ažuriranju unosa hrane:', error);
@@ -46,7 +46,8 @@ const UpdateModal = ({ intake, onClose, onUpdate }) => {
   };
 
   return (
-    <div className="modal">
+    <>
+      <div className="modal-overlay" onClick={onClose}></div>
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
         <h2>Ažuriraj Unos Hrane</h2>
@@ -110,7 +111,7 @@ const UpdateModal = ({ intake, onClose, onUpdate }) => {
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
