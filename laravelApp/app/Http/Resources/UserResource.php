@@ -25,6 +25,8 @@ class UserResource extends JsonResource
             'food_intakes' => $this->foodIntakes,
             'water_intakes' => $this->waterIntakes,
             'personalized_trainings' => $this->personalizedTrainings,
+            'role' => $this->role,
+
         ];
     }
 }

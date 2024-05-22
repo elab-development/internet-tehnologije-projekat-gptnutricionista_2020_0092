@@ -89,7 +89,12 @@ function LoginRegisterComponent({setToken}) {
       console.log('Login response:', response.data);
       sessionStorage.setItem("token", response.data.token);
       setToken(response.data.token)
-      navigate('/sastojci');
+      if(response.data.user.role=="admin"){
+        navigate('/admin')
+      }else{
+        navigate('/mojProfil');
+
+      }
     } catch (error) {
       console.error('Login error:', error);   
     }

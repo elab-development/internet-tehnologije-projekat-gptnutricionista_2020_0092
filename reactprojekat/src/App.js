@@ -8,6 +8,7 @@ import HomePage from './Home/HomePage';
 import DodajUnosHrane from './korisnik/CRUD/DodajUnosHrane';
 import DodajUnosVode from './korisnik/CRUD/DodajUnosVode';
 import DietPlanForm from './korisnik/DietPlanForm';
+import Admin from './Admin/Admin';
 
 function App() {
   const [token, setToken] =useState(null);
@@ -26,6 +27,7 @@ function App() {
 
           <Route path="/dodajHranu" element={<DodajUnosHrane />} />  {/*dodato za seminarski */}
           <Route path="/dodajVodu" element={<DodajUnosVode />} />  {/*dodato za seminarski */}
+          <Route path="/admin" element={<Admin />} />
 
         </Routes>
       </div>

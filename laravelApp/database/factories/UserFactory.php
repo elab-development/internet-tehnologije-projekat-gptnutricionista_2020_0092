@@ -26,7 +26,8 @@ class UserFactory extends Factory
             'height' => $this->faker->numberBetween(150, 200),  
             'weight' => $this->faker->numberBetween(50, 100),  
             'goal_weight' => $this->faker->numberBetween(45, 95),  
-            'dietary_preferences' => $this->faker->randomElement(['Vegetarian', 'Vegan', 'Gluten-Free', 'Keto', 'None']),  
+            'dietary_preferences' => $this->faker->randomElement(['Vegetarian', 'Vegan', 'Gluten-Free', 'Keto', 'None']),
+            'created_at' => $this->faker->dateTimeBetween('first day of January this year', 'last day of December this year'),  
         ];
     }
 

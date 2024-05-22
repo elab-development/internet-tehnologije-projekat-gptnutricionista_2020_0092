@@ -1,0 +1,35 @@
+.admin-dashboard {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    box-sizing: border-box;
+}
+
+.stat-icon {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #17a2b8;
+}
+
+.chart-container {
+    width: 80%;
+    margin: 0 auto;
+}

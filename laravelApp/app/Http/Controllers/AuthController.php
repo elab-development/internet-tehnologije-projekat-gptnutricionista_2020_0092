@@ -76,7 +76,7 @@ class AuthController extends Controller
     public function admin() //metoda na osnovu koje ce admin moci da vidi statistike 
     {
         if (Auth::user()->role !== 'admin') {
-            return response()->json(['message' => 'Unauthorized'], 403);
+            return response()->json(['message' => 'Unauthorizeddd'], 403);
         }
         // Ukupan broj korisnika
         $totalUsers = User::count();

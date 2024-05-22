@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Generisanje dodatnih 10 korisnika koristeći factory
-        User::factory(10)->create();
+        User::factory(50)->create();
 
         // Prolazak kroz sve korisnike i dodavanje FoodIntake, WaterIntake i PersonalizedTraining
         User::all()->each(function ($user) {

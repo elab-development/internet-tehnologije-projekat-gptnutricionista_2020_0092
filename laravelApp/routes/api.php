@@ -37,4 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
         'personalizedTrainings' => PersonalizedTrainingController::class,
         'waterIntakes' => WaterIntakeController::class,
     ]);
+
+
+    Route::get('admin', [AuthController::class, 'admin'])->middleware('auth:sanctum');
 });
