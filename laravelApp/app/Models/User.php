@@ -25,6 +25,7 @@ class User extends Authenticatable
         'weight',
         'goal_weight',
         'dietary_preferences',
+        'role'
     ];
     public function foodIntakes()
     {
